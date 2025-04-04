@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Try-On Result</title>
+  </head>
+  <body>
+    <h1>Try-On Result</h1>
+
+    {% if result.result_url %}
+      <h3>Generated Image:</h3>
+      <img src="{{ result.result_url }}" alt="Try-On Result" style="max-width: 400px;">
+      <br><br>
+      <a href="{{ result.result_url }}" download>Download Image</a>
+    {% elif result.output_url %}
+      <h3>Generated Image:</h3>
+      <img src="{{ result.output_url }}" alt="Try-On Result" style="max-width: 400px;">
+      <br><br>
+      <a href="{{ result.output_url }}" download>Download Image</a>
+    {% elif result.image_url %}
+      <h3>Generated Image:</h3>
+      <img src="{{ result.image_url }}" alt="Try-On Result" style="max-width: 400px;">
+      <br><br>
+      <a href="{{ result.image_url }}" download>Download Image</a>
+    {% else %}
+      <h3>No result image found.</h3>
+      <h4>API Response:</h4>
+      <pre>{{ result | tojson(indent=2) }}</pre>
+    {% endif %}
+
+    <br><br>
+    <a href="{{ url_for('index') }}">Try Another Image</a>
+  </body>
+</html>
